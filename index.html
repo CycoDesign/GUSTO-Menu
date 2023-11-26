@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="icon" href="images/Brand/Logo/FLAVORS.jpg">
+    <title>FLAVORS • Gastro Bar •</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/loaders.css?v=1">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20">
+
+
+<style>
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff1900;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-float:hover {
+  background-color: #ff5940;
+}
+
+.preloadera {
+            display: none;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preloadera img {
+            width: 120px;
+        }
+</style>
+</head>
+<body onload="buscar();">
+<a href="https://api.whatsapp.com/send?phone=573136241437&text=Hola%21%20Tengo%20una%20consulta." class="whatsapp-float" target="_blank"><img src="./images/WSP/whatsapp.svg" width="90%"/></a>
+    <!-- preloader -->
+    <div class="preloader">
+        <img src="images/Brand/Logo/FLAVORS.jpg" alt="FLAVORS">
+    </div>
+    <!-- end preloader -->
+
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col s3">
+                    <div class="content-left">
+                        <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="fa fa-bars"></i></a>
+                        
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="content-center">
+                        <a href="index.html"><h1>FLAVORS</h1></a>
+                    </div>
+                </div>
+                <div class="col s3">
+                    <!--<div class="content-right">
+                        <a href="reservation.html"><i class="fa fa-clipboard"></i></a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div class="sidebar-panel">
+        <ul id="slide-out" class="collapsible sidenav side-left side-nav">
+            <li>
+                <div class="user-view">
+                    <h2 style="font-family: 'Fontuna Regular', sans-serif; letter-spacing: 5px; font-size: 36px;"><span>F</span>LAVORS</h2>
+                    <p style="top: -10px; position: relative;">Zarzal</p>
+                </div>
+            </li>
+            <li><a href="./index.html"><i class="fa fa-home"></i>Inicio</a></li>
+            <!--<li>
+                <div class="collapsible-header">
+                    <i class="fa fa-list"></i>Menu<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="menu-list.html">Menu</a></li>
+                        <li><a href="menu-details.html">Menu Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-user-circle-o"></i>Chef<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="chef.html">Chef</a></li>
+                        <li><a href="chef-details.html">Chef Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-user"></i>Profile<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="edit-profile.html">Edit Profile</a></li>
+                        <li><a href="forgot-password.html">Forgot Password</a></li>
+                        <li><a href="reset-password.html">Reset Password</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="#!.html">Logout</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-file"></i>Pages<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonial.html">Testimonial</a></li>
+                        <li><a href="pricing-table.html">Pricing Table</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-tags"></i>Category<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="category-details.html">Category Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-shopping-cart"></i>Shop<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="done-process.html">Done</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-rss"></i>Blog<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog-single.html">Blog Single</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="reservation.html"><i class="fa fa-book"></i>Reservation</a></li>
+            <li><a href="open-hours.html"><i class="fa fa-clock-o"></i>Open Hours</a></li>
+            <li><a href="contact.html"><i class="fa fa-envelope"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
+            <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
+            <li><a href="#!"><i class="fa fa-sign-out"></i>Logout</a></li>-->
+        </ul>
+    </div>
+    <!-- end sidebar -->
+<br>
+    <!-- slide -->
+    <div class="container">
+        <div class="slide">
+            <div class="slide-show owl-carousel owl-theme">
+                <div class="content">
+                    <div class="mask"></div>
+                    <img src="https://dhb3yazwboecu.cloudfront.net/1516/blog/xcocteletia-blog-1.jpg.pagespeed.ic.m2C9B7oUcv.jpg" alt="">
+                    <div class="slide-caption">
+                        <h2 style="font-size: 39px;margin-bottom: 5px;letter-spacing: 2px;">Bienvenido a Flavors</h2>
+                        <p>¿Qué especialidad te apetece hoy?</p>
+                        <!--<button class="button">Ver más</button>-->
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="mask"></div>
+                    <img src="https://www.escuelacocteleria.es/wp-content/uploads/2022/04/mixologia.jpg" alt="">
+                    <div class="slide-caption">
+                        <h2 style="font-size: 39px;margin-bottom: 5px;letter-spacing: 2px;">Coctelería de Autor</h2>
+                        <p>Sumérgete en Sabores Inigualables</p>
+                        <!--<button class="button">Read More</button>-->
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="mask"></div>
+                    <img src="images/slider3.jpg" alt="">
+                    <div class="slide-caption">
+                        <h2 style="font-size: 39px;margin-bottom: 5px;letter-spacing: 2px;">Platos Extraordinarios</h2>
+                        <p>Sabores únicos en cada plato</p>
+                        <!--<button class="button">Read More</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end slide -->
+<br>
+    <!-- category -->
+    <!--<div class="category segments">
+        <div class="container">
+            <div class="section-title">
+                <h3 style="font-family: 'Fontuna Regular';font-size: 31px;letter-spacing: 1px;">Categorías
+                    <a href="category.html" style="font-family: 'Roboto', sans-serif;font-size: 14px;color: #ff1900;float: right;font-weight: 600; letter-spacing: 0px;">Ver más <i class="fa fa-angle-right"></i></a>
+                </h3>
+            </div>
+            <div class="category-show owl-carousel owl-theme">
+                <a href="category-details.html">
+                    <div class="content c-first">
+                        <div class="mask"></div>
+                        <h4>Comida</h4>
+                    </div>
+                </a>
+                <a href="category-details.html">
+                    <div class="content c-second">
+                        <div class="mask"></div>
+                        <h4>Bebidas</h4>
+                    </div>
+                </a>
+                <!--<a href="category-details.html">
+                    <div class="content c-third">
+                        <div class="mask"></div>
+                        <h4>Snacks</h4>
+                    </div>
+                </a>
+                <a href="category-details.html">
+                    <div class="content c-fourth">
+                        <div class="mask"></div>
+                        <h4>Postres</h4>
+                    </div>
+                </a>-->
+            </div>
+        </div>
+    </div>
+    <!-- end category -->
+
+    <!-- menú -->
+<div class="menu segments bg-second">
+    <div class="container">
+        <div class="section-title">
+            <h3>Menú</h3>
+        </div>
+        <div class="row no-mb">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#tabs1">Comida</a></li>
+                    <li class="tab col s3"><a href="#tabs2">Bebidas</a></li>
+                    <!--<li class="tab col s3"><a href="#tabs3">Snacks</a></li>
+                    <li class="tab col s3"><a href="#tabs4">Postres</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="preloadera">
+        <img id="loadera" src="https://media4.giphy.com/media/FgH5xSNjGHZsiYPWAX/giphy.gif?cid=6c09b952mtzvijk63r6sgs65slthfd6h9z9xr4n6cv24jpgs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="Cargando...">
+        </div>
+        <div id="tabs1">
+            <script id="ControlComida" type="text/x-handlebars-template">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+                <div class="col s6" style="margin-top: 20px;">
+                    <a href="menu-details.html?productId={{cells.ID}}">
+                        <div class="content">
+                            <img src="{{cells.IMAGEN1}}" alt="{{cells.PRODUCTO}}">
+                            <div class="text">
+                                <h6>{{cells.PRODUCTO}}</h6>
+                                <p class="price">{{cells.PRECIO}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                {{#if @index.isEven}}
+                </div>
+                <div class="row" style="margin-right: 0; margin-left: 0;">
+                {{/if}}
+            </script>
+        </div>
+
+        <div id="tabs2">
+        <script id="ControlBebidas" type="text/x-handlebars-template">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+                <div class="col s6" style="margin-top: 20px;">
+                    <a href="menu-details.html?productId={{cells.ID}}">
+                        <div class="content">
+                            <img src="{{cells.IMAGEN1}}" alt="{{cells.PRODUCTO}}">
+                            <div class="text">
+                                <h6>{{cells.PRODUCTO}}</h6>
+                                <p class="price">{{cells.PRECIO}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                {{#if @index.isEven}}
+                </div>
+                <div class="row" style="margin-right: 0; margin-left: 0;">
+                {{/if}}
+            </script>
+        </div>
+
+    
+       <!--<div id="tabs3">
+            <div class="row">
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/snack1.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Calabaza Frita</h6>
+                                <p class="price">$16</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/snack2.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Calabaza Frita</h6>
+                                <p class="price">$22</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/snack3.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Calabaza Frita</h6>
+                                <p class="price">$14</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/snack4.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Calabaza Frita</h6>
+                                <p class="price">$12</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="tabs4">
+            <div class="row">
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/dessert1.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Pan de Pandan</h6>
+                                <p class="price">$15</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/dessert2.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Pan de Pandan</h6>
+                                <p class="price">$21</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/dessert3.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Pan de Pandan</h6>
+                                <p class="price">$14</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col s6">
+                    <a href="menu-details.html">
+                        <div class="content">
+                            <img src="images/dessert4.jpg" alt="menú">
+                            <div class="text">
+                                <h6>Pan de Pandan</h6>
+                                <p class="price">$32</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!-- fin del menú -->
+
+
+    <!-- testimonial -->
+    <div class="testimonial segments">
+        <div class="container">
+            <div class="testimonial-show owl-carousel owl-theme">
+                <div class="content">
+                    <h5>Marlon González</h5>
+                    <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star-half-o"></i></li>
+                    </ul>
+                    <p>Excelente servicio por parte del personal.</p>
+                </div>
+                <div class="content" alt="testimonial">
+                    <h5>Luisa Ramírez</h5>
+                    <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star-half-o"></i></li>
+                    </ul>
+                    <p>Muy buena atención y comida.</p>
+                </div>
+                <div class="content" alt="testimonial">
+                    <h5>Cristian Martínez</h5>
+                    <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star-o"></i></li>
+                    </ul>
+                    <p>Sabores únicos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end testimonial -->
+<hr>
+
+
+
+<div class="embedsocial-hashtag" data-ref="7d3be340f7f69fb69484ff6e4b841bd4664d1146">
+    <a class="feed-powered-by-es feed-powered-by-es-feed-new" href="https://embedsocial.com/social-media-aggregator/" target="_blank"></a>
+</div>
+
+
+<!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="desc">
+                <p>Cra. 10 #11-27</p>
+                <span>Zarzal, Valle del Cauca</span>
+            </div>
+            <ul>
+                <li><a href="https://www.facebook.com/FlavorsZarzal"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/flavors_zarzal/"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+            <p>Copyright © <span id="year"></span> - Flavors Zarzal<br>Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js?v=10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.2.0/dist/sheetrock.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.2/handlebars.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+ <script> (function(d, s, id) { var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript")); $("#year").html(new Date().getFullYear())</script>
+
+<script lang="JavaScript">
+var myProducts = 'https://docs.google.com/spreadsheets/d/19vHs7Se1YhCg-7tOuQx0w3DE-VuJQNC9EG7rWcokCMU/edit#gid=372526935';
+var ControlComida = Handlebars.compile($('#ControlComida').html());
+var ControlBebidas = Handlebars.compile($('#ControlBebidas').html());
+
+function buscar(){
+    $("#tabs1").sheetrock({
+        url: myProducts,
+        query: "select A,B,C,D,E,F,G,H,I,J where B = 'COMIDA' and I = 'SI' order by C asc",
+        rowTemplate: ControlComida,
+        callback: function (error, options, response) { $('.preloadera').hide();}
+    });
+
+    $("#tabs2").sheetrock({
+        url: myProducts,
+        query: "select A,B,C,D,E,F,G,H,I,J where B = 'BEBIDAS' and I = 'SI' order by C asc",
+        rowTemplate: ControlBebidas,
+        callback: function (error, options, response) {}
+    });
+}
+
+
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
+</body>
+</html>
