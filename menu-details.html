@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="images/favicon.png">
+    <title>FLAVORS • Gastro Bar •</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/loaders.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
+<style>
+    .slick-dotted.slick-slider {
+    margin-bottom: 44px !important;
+}
+
+.preloadera {
+            display: none;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60%;
+            margin-top: 80px;
+        }
+
+        .preloadera img {
+            width: 120px;
+        }
+</style>
+</head>
+<body onload="buscar()">
+
+    <!-- navbar -->
+    <div class="navbar navbar-home">
+        <div class="container">
+            <div class="row">
+                <div class="col s3">
+                    <div class="content-left">
+                        <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="fa fa-bars"></i></a>
+                        
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="content-center">
+                        <a href="index.html"><h1>FLAVORS</h1></a>
+                    </div>
+                </div>
+                <div class="col s3">
+                    <!--<div class="content-right">
+                        <a href="reservation.html"><i class="fa fa-clipboard"></i></a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div class="sidebar-panel">
+        <ul id="slide-out" class="collapsible sidenav side-left side-nav">
+            <li>
+                <div class="user-view">
+                    <h2 style="font-family: 'Fontuna Regular', sans-serif; letter-spacing: 5px; font-size: 36px;"><span>F</span>LAVORS</h2>
+                    <p style="top: -10px; position: relative;">Zarzal</p>
+                </div>
+            </li>
+            <li><a href="./index.html"><i class="fa fa-home"></i>Inicio</a></li>
+            <!--<li>
+                <div class="collapsible-header">
+                    <i class="fa fa-list"></i>Menu<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="menu-list.html">Menu</a></li>
+                        <li><a href="menu-details.html">Menu Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-user-circle-o"></i>Chef<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="chef.html">Chef</a></li>
+                        <li><a href="chef-details.html">Chef Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-user"></i>Profile<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="edit-profile.html">Edit Profile</a></li>
+                        <li><a href="forgot-password.html">Forgot Password</a></li>
+                        <li><a href="reset-password.html">Reset Password</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="#!.html">Logout</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-file"></i>Pages<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonial.html">Testimonial</a></li>
+                        <li><a href="pricing-table.html">Pricing Table</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-tags"></i>Category<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="category-details.html">Category Details</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-shopping-cart"></i>Shop<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="done-process.html">Done</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="fa fa-rss"></i>Blog<span><i class="fa fa-caret-right right"></i></span>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog-single.html">Blog Single</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="reservation.html"><i class="fa fa-book"></i>Reservation</a></li>
+            <li><a href="open-hours.html"><i class="fa fa-clock-o"></i>Open Hours</a></li>
+            <li><a href="contact.html"><i class="fa fa-envelope"></i>Contact</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
+            <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
+            <li><a href="#!"><i class="fa fa-sign-out"></i>Logout</a></li>-->
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- menu details -->
+    <div class="menu-details segments-page">
+        <div class="container" id="contenedor">
+        <div class="preloadera">
+        <img id="loadera" src="https://media4.giphy.com/media/FgH5xSNjGHZsiYPWAX/giphy.gif?cid=6c09b952mtzvijk63r6sgs65slthfd6h9z9xr4n6cv24jpgs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="Cargando...">
+        </div>
+            <script id="ControlComida" type="text/x-handlebars-template">
+            <div class="slidea"> 
+            <div id="tabs1">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="content">
+                            <img src="{{cells.IMAGEN1}}" alt="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tabs2">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="content">
+                            <img src="{{cells.IMAGEN2}}" alt="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tabs3">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="content">
+                            <img src="{{cells.IMAGEN3}}" alt="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="content-desc">
+                <h4 style="color: black;">{{cells.PRODUCTO}}</h4>
+                <span style="font-weight: bold;">{{cells.PRECIO}}</span>
+                <p>{{cells.DESCRIPCION}}</p>
+            </div><br><br>
+
+          <!--<div class="review">
+                <h5>Review</h5>
+                <div class="comment-people">
+                    <div class="content">
+                        <div class="image">
+                            <img src="images/comment1.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h6>John Andy</h6>
+                            <p class="date">March 23, 2018</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, non.</p>
+                        </div>
+                    </div>
+                    <div class="content reply">
+                        <div class="image">
+                            <img src="images/comment2.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h6>Franky</h6>
+                            <p class="date">March 24, 2018</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, non.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-add">
+                <h5>Leave Your Reply</h5>
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <textarea cols="30" rows="10" placeholder="Message"></textarea>
+                    <button class="button">Submit</button>
+                </form>
+            </div>-->
+        </script>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="desc">
+                <p>Cra. 10 #11-27</p>
+                <span>Zarzal, Valle del Cauca</span>
+            </div>
+            <ul>
+                <li><a href="https://www.facebook.com/FlavorsZarzal"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/flavors_zarzal/"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+            <p>Copyright © <span id="year"></span> - Flavors Zarzal<br>Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.2.0/dist/sheetrock.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.2/handlebars.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script lang="JavaScript">
+var myProducts = 'https://docs.google.com/spreadsheets/d/19vHs7Se1YhCg-7tOuQx0w3DE-VuJQNC9EG7rWcokCMU/edit#gid=372526935';
+var ControlComida = Handlebars.compile($('#ControlComida').html());
+const urlParams = new URLSearchParams(window.location.search);
+var productId = urlParams.get('productId');
+
+function buscar(){
+    $("#contenedor").sheetrock({
+  url: myProducts,
+  query: "select A,B,C,D,E,F,G,H,I,J where I = 'SI' and J = '" + productId + "'",
+  rowTemplate: ControlComida,
+  callback: function (error, options, response) {
+        $('.preloadera').hide();
+
+        var validImages = $('.slidea .content img').filter(function() {
+                return $(this).attr('src') && $(this).attr('src').trim() !== '';
+            }).length;
+
+        if (validImages > 1) {
+
+            if (validImages > 1 && validImages < 3) {
+                $('#tabs3').remove();
+            }
+                $('.slidea').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    cssEase: 'linear',
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    arrows: false,
+                });
+        } else {
+            $('#tabs3').remove();
+            $('#tabs2').remove();
+        }
+  }
+});
+}
+
+
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
+</body>
+</html>
