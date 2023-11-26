@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto - GUSTO Menú</title>
+    <link rel="icon" href="../images/Brand/Logo/GUSTOMenu.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', 'sans-serif';
+        }
+
+                /* Firefox */
+        * {
+        scrollbar-width: thin;
+        scrollbar-color: #E86645 #DFE9EB;
+        }
+
+        /* Chrome, Edge and Safari */
+        *::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+        border-radius: 2px;
+        background-color: #DFE9EB;
+        }
+
+        *::-webkit-scrollbar-track:hover {
+        background-color: #E3EDEF;
+        }
+
+        *::-webkit-scrollbar-track:active {
+        background-color: #E7F1F3;
+        }
+
+        *::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #E86645;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+        background-color: #E8835E;
+        }
+
+        *::-webkit-scrollbar-thumb:active {
+        background-color: #FF503D;
+        }
+
+        .edit-product-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff6060;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #product-name {
+            border: none;
+            padding: 0;
+            border-radius: 0;
+            border-bottom: #ff8a8a solid 1px;
+        }
+
+        #product-name:focus {
+            outline: none;
+        }
+
+        .principal {
+            width: 100%;
+            border-radius: 5px;
+            margin: 2% auto;
+            text-align: center;
+            height: 320px;
+            border: #ff8080 4px solid;
+            cursor: pointer;
+        }
+
+        .principal h3 {
+            margin: auto;
+            color: white;
+            font-weight: bold;
+            font-size: 3rem;
+            border: white 2px solid;
+            width: 80px;
+            height: 66px;
+            background: #794646b5;
+            border-radius: 8px;
+        }
+
+        .slick-slider {
+            width: 97%;
+            margin: 0 auto;
+        }
+        .slick-prev:before, .slick-next:before {
+            font-family: 'slick';
+            font-size: 40px;
+            line-height: 1;
+            color: #ff5353;
+            -webkit-font-smoothing: antialiased;
+        }
+        .slick-prev, .slick-next {
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            z-index: 9;
+            display: block;
+            width: 40px;
+            height: 22px;
+            opacity: 1 !important;
+            padding: 0;
+            -webkit-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            cursor: pointer;
+            color: transparent;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Asegura que el preloader esté en la parte superior */
+        }
+
+        .preloader img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body onload="buscar();">
+    <div style="width: 100%; text-align: center; margin-top: 3%;"> <img src="/images/Brand/Logo/GUSTOMenu_TextBlack.png" width="150px"></div>
+    <div class="edit-product-container" id="Product">
+<div class="preloader">
+<img id="loader" src="https://media4.giphy.com/media/FgH5xSNjGHZsiYPWAX/giphy.gif?cid=6c09b952mtzvijk63r6sgs65slthfd6h9z9xr4n6cv24jpgs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="Cargando...">
+</div>
+    <script id="ControlProducts" type="text/x-handlebars-template">
+        <h2 style="font-family: 'Concert One'"><i class="fa-solid fa-pen-to-square" style="color: #ff8080;"></i>&nbsp;Editar Producto</h2>
+<form id="contact-form" onsubmit="mandar(); return false;">
+
+<input type="hidden" id="product-id" value="{{cells.ID}}">
+
+
+        <div class="slider">                
+            <div class="row principal" data-image-number="1" style="background-image: url({{cells.IMAGEN1}}); background-position: center center; background-size: cover; display: flex;">
+            <input type="file" class="form-control" id="input_img1" onchange="fileChange(1)" accept="image/*" style="display: none;">
+            <div style="display: flex;" id="drop-zone1" onclick="activateInput(1)">
+                <h3>1</h3>
+            </div>
+            </div>
+
+            <div class="row principal" data-image-number="2" style="background-image: url({{cells.IMAGEN2}}); background-position: center center; background-size: cover; display: flex;">
+            <input type="file" class="form-control" id="input_img2" onchange="fileChange(2)" accept="image/*" style="display: none;">
+            <div style="display: flex;" id="drop-zone2" onclick="activateInput(2)">
+                <h3>2</h3>
+            </div>
+            </div>
+
+            <div class="row principal" data-image-number="3" style="background-image: url({{cells.IMAGEN3}}); background-position: center center; background-size: cover; display: flex;">
+            <input type="file" class="form-control" id="input_img3" onchange="fileChange(3)" accept="image/*" style="display: none;">
+            <div style="display: flex;" id="drop-zone3" onclick="activateInput(3)">
+                <h3>3</h3>
+            </div>
+            </div>
+                
+        </div>
+
+            <div class="form-group">
+                <label for="product-name">Nombre del Producto:</label>
+                <input type="text" id="product-name" name="PRODUCTO" style="font-size: 22px;" autocomplete="off" value="{{cells.PRODUCTO}}" required>
+            </div><br>
+            <div class="form-group">
+                <label for="product-category">Categoría:</label>
+                <select class="form-control" id="product-category" name="CATEGORIA" autocomplete="off" required>
+                    <option value="COMIDA">Comida</option>
+                    <option value="BEBIDAS">Bebidas</option>
+                    <option value="POSTRES">Postres</option>
+                    <option value="COCTELES">Cocteles</option>
+                </select>
+            </div><br>
+
+            <div class="form-group">
+                <label for="product-description">Descripción del Producto:</label>
+                <textarea class="form-control" id="product-description" name="DESCRIPCION" rows="5" style="resize: none;" required>{{cells.DESCRIPCION}}</textarea>
+            </div><br>
+
+            <div class="form-group">
+                <label for="product-price">Precio del Producto:</label>
+                <input type="text" id="product-price" name="PRECIO" value="{{cells.PRECIO}}" autocomplete="off" required>
+            </div>
+
+                <input type="text" style="display: none;" id="imagenform1" name="IMAGEN1" value="{{cells.IMAGEN1}}">
+                <input type="text" style="display: none;" id="imagenform2" name="IMAGEN2" value="{{cells.IMAGEN2}}">
+                <input type="text" style="display: none;" id="imagenform3" name="IMAGEN3" value="{{cells.IMAGEN3}}">
+
+
+            <button type="button" onclick="mandar()">Guardar Cambios</button>
+        </form>
+    </script>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.2.0/dist/sheetrock.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.2/handlebars.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script>
+   var $form = $('form#contact-form');
+
+   function abrir() {
+    Swal.fire({
+         title: "Producto Editado",
+         icon: "success",
+         showConfirmButton: false,
+         allowOutsideClick: false,
+         timer: 2000
+      });
+     redirect();
+
+   }
+
+   function redirect() {
+      setTimeout(function() {
+         location.replace("/Prueba");
+      }, 2000);
+   }
+
+function mandar() {
+   var $form = $('form#contact-form');
+   var url = 'https://script.google.com/macros/s/AKfycbyezG6j8Doc_C_UGO2gAHR3Nk7FVDvoQyadAR3jTfKADcDa4J8O5MkwTNvEbpujkMCR/exec';
+   const urlParams = new URLSearchParams(window.location.search);
+   var productId = urlParams.get('productId');
+   var editUrl = url + "?callback=ctrlq&productId=" + productId + "&action=edit";
+abrir();
+   var jqxhr = $.ajax({
+      url: editUrl,
+      method: "GET",
+      dataType: "json",
+      data: $form.serializeObject(),
+      success: function(data) {
+         console.log(data);
+      }  
+   });
+}
+
+
+
+
+
+function buscar() {
+
+var myProducts = 'https://docs.google.com/spreadsheets/d/19vHs7Se1YhCg-7tOuQx0w3DE-VuJQNC9EG7rWcokCMU/edit#gid=372526935';
+var ControlProducts = Handlebars.compile($('#ControlProducts').html());
+
+const urlParams = new URLSearchParams(window.location.search);
+var productId = urlParams.get('productId');
+
+
+    $("#Product").sheetrock({
+        url: myProducts,
+        query: "select A,B,C,D,E,F,G,H,I,J where J = '" + productId + "'",
+        rowTemplate: ControlProducts,
+        callback: function (error, options, response) {
+            if (error) {
+                console.error('Error en la solicitud de Sheetrock:', error);
+            } else {
+                console.log(response);
+                $('.slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                arrows: true,
+            });
+document.querySelector(".preloader").style.display = "none";
+            }
+        }
+    });
+}
+
+function fileChange(imageNumber) {
+    var fileInput = document.getElementById('input_img' + imageNumber);
+    var file = fileInput.files[0];
+
+
+            if (file) {
+                var img = new Image();
+                img.src = window.URL.createObjectURL(file);
+
+                img.onload = function () {
+                    var desiredAspectRatio = 320 / 213;
+                    var originalAspectRatio = img.width / img.height;
+
+                    if (originalAspectRatio !== desiredAspectRatio) {
+                        // Mostrar una alerta de SweetAlert
+                        Swal.fire({
+                            icon: "question",
+                            title: "Redimensionar Imagen",
+                            text: "La imagen no tiene la relación de aspecto deseada (320:213). ¿Deseas redimensionarla automáticamente?",
+                            showCancelButton: true,
+                            showConfirmButton: true,
+                            confirmButtonText: "Sí",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (originalAspectRatio > desiredAspectRatio) {
+                            img.width = 640;
+                            img.height = 640 / originalAspectRatio;
+                        } else {
+                            img.height = 426;
+                            img.width = 426 * originalAspectRatio;
+                        }
+                    }
+                    processAndUploadImage(img, imageNumber);
+                });
+            } else {
+                        processAndUploadImage(img, imageNumber);
+                    }
+                };
+            }
+        }
+
+        function processAndUploadImage(img, imageNumber) {
+            $(".preloader").fadeIn(1000);
+                document.body.style.overflow = "hidden";
+
+
+            // Procesar y subir la imagen
+            var canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 426;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            var resizedImage = canvas.toDataURL('image/jpeg');
+            var form = new FormData();
+            form.append("image", dataURItoBlob(resizedImage));
+
+            var settings = {
+                "url": "https://api.imgbb.com/1/upload?key=ae04368bb81b6e944f3247d81ff33784",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+
+
+            $.ajax(settings).done(function (response) {
+                var jx = JSON.parse(response);
+                console.log(response);
+                var imageUrl = jx.data.url;
+                $('.slick-slide[data-image-number="' + imageNumber + '"]').css('background-image', 'url(' + imageUrl + ')');
+                $('#imagenform' + imageNumber).attr('value', imageUrl);
+                $(".preloader").fadeOut(1000);
+                document.body.style.overflow = "auto"; // Habilita el scroll
+            });
+
+        }
+        
+        function activateInput(imageNumber) {
+            document.getElementById('input_img' + imageNumber).click();
+        }
+
+
+
+
+        function dataURItoBlob(dataURI) {
+            var byteString = atob(dataURI.split(',')[1]);
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ab], { type: mimeString });
+        }
+
+
+
+
+
+
+
+(function() {
+  if (window.localStorage && !localStorage.getItem('firstLoad')) {
+    localStorage['firstLoad'] = true;
+    window.location.reload();
+  } else {
+    localStorage.removeItem('firstLoad');
+  }
+})();
+</script>
+</body>
+</html>
