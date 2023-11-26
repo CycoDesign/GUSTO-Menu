@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUSTO Menú - Dashboard</title>
+    <link rel="icon" href="../images/Brand/Logo/GUSTOMenu.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+        body {
+            background-color: #f7f7f7;
+        }
+        /* Firefox */
+        * {
+        scrollbar-width: thin;
+        scrollbar-color: #E86645 #DFE9EB;
+        }
+
+        /* Chrome, Edge and Safari */
+        *::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+        border-radius: 2px;
+        background-color: #DFE9EB;
+        }
+
+        *::-webkit-scrollbar-track:hover {
+        background-color: #E3EDEF;
+        }
+
+        *::-webkit-scrollbar-track:active {
+        background-color: #E7F1F3;
+        }
+
+        *::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #E86645;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+        background-color: #E8835E;
+        }
+
+        *::-webkit-scrollbar-thumb:active {
+        background-color: #FF503D;
+        }
+
+        .product-list {
+            list-style: none;
+            padding: 0;
+        }
+
+       .product-list-item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #f7a8a8;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative; /* Añade posición relativa para elementos secundarios posicionados absolutamente con respecto a esto */
+        }
+
+        .product-list-item:hover {
+            background-color: #ffebeb;
+            border: 1px solid #9378ff;
+            color: #0f0b4b;
+        }
+
+        .product-list-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .product-list-details {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-overflow: ellipsis;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #007BFF;
+        }
+
+        .dashboard-header {
+            background: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/411724966.jpg?k=e15ec44ab447e8e230c5112345e84fa0c798d7c5e6a2c374c3bb60dc3a11d535&o=&hp=1');
+            background-color: rgba(255,171 ,171, 9);
+            background-blend-mode: soft-light;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: 24px;
+            margin: 5px 0;
+        }
+
+        .dashboard-header .logo {
+            max-width: 135px;
+            margin: 16px;
+        }
+
+        .dashboard-header .counts {
+            font-size: 18px;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .menu-button i {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: width 0.5s ease;
+            padding-top: 60px;
+            z-index: 998;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .close-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .cell {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+            padding: 20px 10px 10px;
+            background-color: white;
+            border-radius: 5px;
+            border: 2px solid #a58d8d;
+            color: #650b0b;
+        }
+
+        .cell .count {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .cell .label {
+            font-size: 14px;
+        }
+
+                /* Agrega este estilo CSS en la sección de estilos de tu código */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer; /* Agrega este estilo para indicar que es interactivo */
+        }
+
+        .profile-picture {
+            width: 50px; /* Ajusta el tamaño según tu preferencia */
+            height: 50px; /* Ajusta el tamaño según tu preferencia */
+            border-radius: 50%; /* Hace que la foto de perfil sea redonda */
+            margin: 13px 0px 23px 31px;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            margin: auto 10px;
+        }
+
+        .profile-name {
+            font-size: 14px; /* Ajusta el tamaño según tu preferencia */
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: green;
+            margin-left: 5px;
+            left: -27px;
+            top: -9px;
+            position: relative;
+        }
+
+        .online {
+            background-color: green;
+        }
+
+        .product-buttons {
+            display: none;
+            position: absolute;
+            text-align: center;
+            margin: auto;
+            width: 100%;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 2s ease;
+            transform: translateY(10px);
+        }
+
+        .product-list-item.active .product-buttons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-list-item.active .product-list-overlay {
+            opacity: 1; /* Muestra el overlay al hacer hover */
+            visibility: visible; 
+        }
+
+        .product-buttons button {
+            display: inline-block;
+            padding: 0.1em 0.4em;
+            border: 3px solid #ff6060;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 3em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: "Roboto", sans-serif;
+            background-color: transparent;
+            font-weight: 300;
+            color: #a92c2c;
+            text-align: center;
+            transition: all 0.2s;
+            animation: bn13bouncy 5s infinite linear;
+            position: relative;
+        }
+
+
+        .product-list-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(215 217 255 / 84%); /* Cambia el color y la opacidad según tus preferencias */
+            z-index: 1; /* Asegura que el overlay esté por encima de otros elementos */
+            border-radius: 5px;
+            opacity: 0; /* Inicialmente transparente */
+            visibility: hidden; /* Inicialmente oculto */
+            transition: opacity 0.5s ease, visibility 0.5s ease; /* Agrega transición de opacidad y visibilidad */
+        }
+
+        .edit-button, .hide-button, .delete-button {
+            background: transparent;
+        }
+
+        .edit-button:hover {
+            border: 3px solid #3d79e7;
+            color: #ffffff;
+            background-color: #004ba3;
+        }
+
+        .hide-button:hover {
+            border: 3px solid #e7933d;
+            color: #ffffff;
+            background-color: #a36000;
+        }
+
+        .delete-button:hover {
+            border: 3px solid #e73d3d;
+            color: #ffffff;
+            background-color: #a30000;
+        }
+
+        .categoria {
+            right: 5%;
+            bottom: 17%;
+            position: absolute;
+            font-weight: bold;
+            background: #ffd8d8;
+            border-radius: 8px;
+            padding: 1px 6px;
+            font-size: 13px;
+        }
+
+    </style>
+</head>
+<body onload="buscar();">
+    <div class="dashboard-header" id="Info">
+    <script id="BusinessInfo" type="text/x-handlebars-template">
+        <div class="menu-button" id="nav" onclick="openNav()"><i class="fas fa-bars"></i></div>
+        <div style="display: inline-flex;"><img src="../images/Brand/Logo/GUSTOMenu.png" width="45px"><h1 style="font-family: 'Concert One', 'sans-serif'; margin: 5px auto;">GUSTO<br><span style="font-size: 16px; position: absolute; margin-top: -7px; margin-left: -31px;">Menú</span></h1></div>
+        <img src="{{cells.LOGO}}" alt="Logo del Restaurante" class="logo">
+        <div class="counts">
+            <div class="cell" style="background-image: url(https://e7.pngegg.com/pngimages/1005/541/png-clipart-computer-icons-food-dish-restaurant-menu-angle-food-thumbnail.png); background-size: 28px; background-repeat: no-repeat; background-position: center 0px;">
+                <div class="count">{{cells.PRODUCTOS}}</div>
+                <div class="label">Productos</div>
+            </div>
+            <div class="cell" style="background-image: url(https://i.pinimg.com/originals/5e/fa/77/5efa77186bd7ca39e06aae2bad562351.png); background-size: 28px; background-repeat: no-repeat; background-position: center 2px;">
+                <div class="count">{{cells.CATEGORIAS}}</div>
+                <div class="label">Categorías</div>
+            </div>
+        </div>
+    </script>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-button" onclick="closeNav()"><i class="fas fa-times"></i></a>
+<efe class="contenido" id="contenido">
+        <div class="profile-section" id="Perfil">
+        <script id="Usuarioactivo" type="text/x-handlebars-template">
+            <img src="{{cells.LOGO}}" alt="{{cells.EMPRESA}}" class="profile-picture">
+            <input type="text" style="display: none;" id="myInfoVal" value="{{cells.INFO}}">
+            <div class="profile-info" id="profile-info">
+                <span class="profile-name">{{cells.EMPRESA}}</span>
+                <span class="profile-name" style="color: #ffbbbb;">{{cells.CIUDAD}}</span>
+                <div class="status-indicator online"></div>
+            </div>
+        </script>
+        </div>
+        <a href="#">Ver menú</a>
+        <!--<a href="#">Productos</a>
+        <a href="#">Categorías</a>
+        <a href="#">Configuración</a>-->
+<br>
+        <a href="#" onclick="logout()" style="color: #9f1e1e; cursor: pointer; text-decoration: none;">
+                <div>
+                    <div><i class="fa-solid fa-door-open"></i> Cerrar Sesión</div>
+                </div>
+        </a>
+</efe>
+    </div>
+<div style="background-color: red; height: 8px; width: 100%;"></div>
+    <div class="container">
+        <div class="text-center mb-3" style="background: #ffdfdf; padding: 10px 10px; left: 0; position: absolute; right: 0; margin: 0px 0px 0px;">
+            <a href="crear-producto.html" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Crear Producto</a>
+            <a href="crear-categoria.html" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Crear Categoría</a>
+        </div><br><br><br><br>
+        <span style="border-bottom: solid #a1a1a1; font-weight: bold;"><i class="fa-solid fa-signal" style="color:#1f9147;"></i> Productos Activos</span><br><br>
+
+<div style="margin: auto; text-align: center;" id="loaderlist"><img src="https://media4.giphy.com/media/FgH5xSNjGHZsiYPWAX/giphy.gif?cid=6c09b952mtzvijk63r6sgs65slthfd6h9z9xr4n6cv24jpgs&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" width="70px"></div>
+
+<div id="Listado" style="display: none;">
+    <script id="ControlProducts" type="text/x-handlebars-template">
+        <ul class="product-list" product-name="{{cells.ID}}">
+            <li class="product-list-item">
+            <div class="product-list-overlay"></div>
+                        <div class="product-buttons">
+                            <button class="edit-button" onclick="editProduct('{{cells.ID}}')"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="delete-button" onclick="deleteProduct('{{cells.ID}}')"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                            <button class="hide-button" onclick="hideProduct('{{cells.ID}}')"><i class="fa-solid fa-eye-slash"></i> Ocultar</button>
+                        </div>
+                <img class="product-list-image" src="{{cells.IMAGEN1}}" alt="{{cells.PRODUCTO}}">
+                <div class="product-list-details">
+                    <h3 class="product-name">{{cells.PRODUCTO}}</h3>
+                    <p>Precio: <e style="color:#df8062; font-weight: bold;">{{cells.PRECIO}}</e>    <span class="categoria">{{cells.CATEGORIA}}</span></p>
+                </div>
+            </li>
+        </ul>
+    </script>
+</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.2.0/dist/sheetrock.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.2/handlebars.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script>
+checkLoggedIn();
+$('.product-buttons').hide();
+
+$(document).on('click', function(event) {
+    if (!$(event.target).closest('.product-list-item').length) {
+        $('.product-list-item').removeClass('active').find('.product-buttons').slideUp();
+    }
+});
+
+
+$('#Listado').on('click', '.product-list-item', function(event) {
+    if ($(event.target).closest('.product-buttons').length > 0) {
+        return;
+    }
+
+    $('.product-list-item').not(this).removeClass('active').find('.product-buttons').slideUp();
+    $(this).toggleClass('active').find('.product-buttons').slideToggle();
+});
+
+$('.product-buttons').on('click', function(event) {
+    event.stopPropagation();
+    $(this).stop(true, true);
+});
+$('.product-buttons button').on('click', function(event) {
+    event.stopPropagation();
+});
+
+
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            $("#contenido").fadeIn(1600);
+            document.getElementById("nav").style.position = "fixed";
+        }
+     
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            $("#contenido").fadeOut(10);
+            document.getElementById("nav").style.position = "absolute";
+        }
+
+var myProducts = 'https://docs.google.com/spreadsheets/d/19vHs7Se1YhCg-7tOuQx0w3DE-VuJQNC9EG7rWcokCMU/edit#gid=372526935';
+var ControlProducts = Handlebars.compile($('#ControlProducts').html());
+
+
+function buscar(){
+    $("#Listado").sheetrock({
+  url: myProducts,
+  query: "select A,B,C,D,E,F,G,H,I,J where I = 'SI' order by C asc",
+  rowTemplate: ControlProducts,
+  fetchSize: 7,
+  callback: function (error, options, response) {
+      console.log(response);
+      $('#loaderlist').remove();
+      $('#Listado').fadeIn(500);
+  }
+});
+}
+
+
+function checkLoggedIn() {
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    var userlog = localStorage.getItem('username');
+    var loginTime = localStorage.getItem('loginTime');
+
+    if (isLoggedIn !== 'true' || !userlog || !loginTime) {
+        window.location.href = 'login.html';
+    } else {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(loginTime);
+        var hoursElapsed = elapsedTime / (1000 * 60 * 60);
+
+        if (hoursElapsed > 24) {
+            window.location.href = 'login.html';
+        } else {
+            sesion(userlog);
+        }
+    }
+}
+
+
+function sesion(usuario) {
+
+var myUsers = 'https://docs.google.com/spreadsheets/d/1ZEcGOmQBnuszMEO4xG0n5rNq8N0_7zbUDbzP-nH5xbQ/edit#gid=0';
+var ControlUser = Handlebars.compile($('#Usuarioactivo').html());
+
+
+
+    $("#Perfil").sheetrock({
+        url: myUsers,
+        query: "select D,E,H,I where B = '" + usuario + "'",
+        rowTemplate: ControlUser,
+        callback: function (error, options, response) {
+            if (error) {
+                console.error('Error en la solicitud de Sheetrock:', error);
+            } else {
+                console.log(response);
+                informacion();
+            }
+        }
+    });
+
+
+function informacion() {
+
+                    var myInfo = document.getElementById("myInfoVal").value;
+                    var ControlInfo = Handlebars.compile($('#BusinessInfo').html());
+
+                    $("#Info").sheetrock({
+                        url: myInfo,
+                        query: "select A,B,C order by A desc",
+                        rowTemplate: ControlInfo,
+                        callback: function (error, options, response) {
+                            if (error) {
+                                console.error('Error en la solicitud de Sheetrock:', error);
+                            } else {
+                                console.log(response);
+                            }
+                        }
+                    });
+}
+}
+
+
+function logout() {
+            // Eliminar información de sesión de localStorage
+            localStorage.removeItem('isLoggedIn');
+            checkLoggedIn();
+        }
+
+
+
+function editProduct(productName) {
+    window.location.href = 'actions/edit-product.html?productId=' + encodeURIComponent(productName);
+}
+
+
+function deleteProduct(productName) {
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+        var script_url = "https://script.google.com/macros/s/AKfycbyk-ZCXolIJdn9nU-r31K3U9GhsqWfUAprkLnvgjmgYS-cGAOhdVcp1uUwvI7ZdhPM2/exec";
+
+            var productId = productName;
+            var url = script_url + "?callback=ctrlq&productId=" + productId + "&action=delete";
+
+        var jqxhr = $.ajax({
+        url: url,
+        crossDomain: true,
+        method: "GET",
+        dataType: "json",
+        });
+    
+
+        var listItem = $('#Listado').find('.product-list[product-name="' + productName + '"]');
+        listItem.slideUp(500, function() {
+            listItem.remove();
+        });
+            Swal.fire('Eliminado', 'El producto ha sido eliminado', 'success');
+        }
+    });
+}
+
+
+function hideProduct(productName) {
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, ocultar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+        var script_url = "https://script.google.com/macros/s/AKfycbyABOMVDZV3zBIJV9BtsggdQNIGmpsIqoNkF9pCflJYiRVfSFW3iPuznJe5y2gFf1P9/exec";
+
+            var productId = productName;
+            var url = script_url + "?callback=ctrlq&productId=" + productId + "&action=hide";
+
+        var jqxhr = $.ajax({
+        url: url,
+        crossDomain: true,
+        method: "GET",
+        dataType: "json",
+        });
+
+        var listItem = $('#Listado').find('.product-list[product-name="' + productName + '"]');
+        listItem.slideUp(500, function() {
+            listItem.remove();
+        });
+
+            Swal.fire('Oculto', 'El producto ha sido ocultado', 'success');
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function() {
+  if (window.localStorage && !localStorage.getItem('firstLoad')) {
+    localStorage['firstLoad'] = true;
+    window.location.reload();
+  } else {
+    localStorage.removeItem('firstLoad');
+  }
+})();
+
+    </script>
+</body>
+</html>
