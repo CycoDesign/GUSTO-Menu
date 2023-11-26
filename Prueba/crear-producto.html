@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Creación de Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+                /* Firefox */
+        * {
+        scrollbar-width: thin;
+        scrollbar-color: #E86645 #DFE9EB;
+        }
+
+        /* Chrome, Edge and Safari */
+        *::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+        border-radius: 2px;
+        background-color: #DFE9EB;
+        }
+
+        *::-webkit-scrollbar-track:hover {
+        background-color: #E3EDEF;
+        }
+
+        *::-webkit-scrollbar-track:active {
+        background-color: #E7F1F3;
+        }
+
+        *::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #E86645;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+        background-color: #E8835E;
+        }
+
+        *::-webkit-scrollbar-thumb:active {
+        background-color: #FF503D;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffe2e2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        #drop-zone1 {
+            border: 2px dashed #ff5656;
+            padding: 100px 70px;
+            text-align: center;
+            cursor: pointer;
+            background-size: cover; /* Tamaño del icono */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: #e0e8ffed;
+        }
+
+        #drop-zone2 {
+            border: 2px dashed #ff5656;
+            padding: 100px 70px;
+            text-align: center;
+            cursor: pointer;
+            background-size: cover; /* Tamaño del icono */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: #e0e8ffed;
+        }
+
+        #drop-zone3 {
+            border: 2px dashed #ff5656;
+            padding: 100px 70px;
+            text-align: center;
+            cursor: pointer;
+            background-size: cover; /* Tamaño del icono */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: #e0e8ffed;
+        }
+
+        #drop-zone1 p. #drop-zone2 p, #drop-zone3 p {
+            margin: 0;
+        }
+
+        #image-preview {
+            max-width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .image-div {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            margin: 10px 0;
+        }
+        #product-price {
+            border: 2px solid #63b579;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #007224;
+            width: 100%;
+            background-color: #f3fff5;
+            transition: border-color 0.3s, box-shadow 0.2s;
+        }
+
+        #product-price:focus {
+            border-color: #5ee30b; /* Color del borde al enfocar */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+        }
+        .text {
+            background-color: #fff;
+            padding: 10px;
+            padding-bottom: 5px;
+            border-radius: 0 0 5px 5px;
+            border: 1px solid #ddd;
+            border-width: 0 1px 1px 1px;
+        }
+
+        .preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Asegura que el preloader esté en la parte superior */
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998; /* Asegura que esté debajo del preloader */
+        }
+        
+        .visibility-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .eye-icon {
+            width: 35px;
+            height: 28px;
+            border: 2px solid #ccc;
+            border-radius: 22%;
+            background: #ff0000;
+            text-align: center;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .eye-icon.active {
+            background: #00ff00;
+            border: 2px solid #00cc00;
+        }
+
+        .toggle-switch {
+            width: 45px;
+            height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #ebebeb;
+            position: relative;
+        }
+
+        .toggle-switch:after {
+            content: "";
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active:after {
+            transform: translateX(20px);
+        }
+
+                .slick-slider {
+            width: 97%;
+            margin: 0 auto;
+        }
+        .slick-prev:before, .slick-next:before {
+            font-family: 'slick';
+            font-size: 40px;
+            line-height: 1;
+            color: #ff5353;
+            -webkit-font-smoothing: antialiased;
+        }
+        .slick-prev, .slick-next {
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            z-index: 9;
+            display: block;
+            width: 40px;
+            height: 22px;
+            opacity: 1 !important;
+            padding: 0;
+            -webkit-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            cursor: pointer;
+            color: transparent;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+    </style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="preloader">
+<img id="loader" src="https://tradinglatam.com/wp-content/uploads/2019/04/loading-gif-png-4.gif" alt="Cargando...">
+</div>
+
+    <div class="container mt-4">
+        <div style="display: inline-flex;"><img src="../images/Brand/Logo/GUSTOMenu.png" width="45px"><h1 style="font-family: 'Concert One', 'sans-serif'; margin: 5px auto;">GUSTO<br><span style="font-size: 16px; position: absolute; margin-top: -7px; margin-left: -31px;">Menú</span></h1></div>
+        <br><br><br>
+        <h1 class="text-center">Crear Producto</h1><br>
+        <form class="contact-form" id="contact-form">
+            <div class="slider">                
+                <div class="encierro">
+                <input type="file" class="form-control" id="input_img1" onchange="fileChange(1)" accept="image/*" style="display: none;">
+                <div id="drop-zone1" onclick="activateInput(1)">
+                    <p><h2 style="font-weight: bold; font-size: 2rem;">1</h2><img id="drop-zone-icon1" style="margin: 0 auto;" src="https://svgsilh.com/svg_v2/2027073.svg" width="10%"/><br>SUBIR IMAGEN</p>
+                </div>
+                </div>
+
+                <div class="encierro">
+                <input type="file" class="form-control" id="input_img2" onchange="fileChange(2)" accept="image/*" style="display: none;">
+                <div id="drop-zone2" onclick="activateInput(2)">
+                    <p><h2 style="font-weight: bold; font-size: 2rem;">2</h2><img id="drop-zone-icon2" style="margin: 0 auto;" src="https://svgsilh.com/svg_v2/2027073.svg" width="10%"/><br>SUBIR IMAGEN</p>
+                </div>
+                </div>
+
+                <div class="encierro">
+                <input type="file" class="form-control" id="input_img3" onchange="fileChange(3)" accept="image/*" style="display: none;">
+                <div id="drop-zone3" onclick="activateInput(3)">
+                    <p><h2 style="font-weight: bold; font-size: 2rem;">3</h2><img id="drop-zone-icon3" style="margin: 0 auto;" src="https://svgsilh.com/svg_v2/2027073.svg" width="10%"/><br>SUBIR IMAGEN</p>
+                </div>
+                </div>
+                
+            </div><br><br>
+            <div class="form-group">
+                <label for="product-name">Nombre del Producto:</label>
+                <input type="text" class="form-control" id="product-name" name="PRODUCTO" required oninput="ChangePrev()">
+            </div><br><br>
+            <div class="form-group">
+                <label for="product-description">Descripción del Producto:</label>
+                <textarea class="form-control" id="product-description" name="DESCRIPCION" rows="5" style="resize: none;" required></textarea>
+            </div><br><br>
+            <div class="form-group">
+                <label for="product-category">Categoría:</label>
+                <select class="form-control" id="product-category" name="CATEGORIA" required>
+                    <option value="COMIDA">Comida</option>
+                    <option value="BEBIDAS">Bebidas</option>
+                    <option value="POSTRES">Postres</option>
+                    <option value="COCTELES">Cocteles</option>
+                </select>
+            </div><br><br>
+            <div class="form-group">
+                <label for="product-price">Precio del Producto:</label>
+                <input type="text" class="form-control" name="PRECIO" id="product-price" value="$0" required oninput="ChangePrev()" inputmode="numeric">
+            </div><br><br>
+
+            <div class="form-group" style="text-align: center;">
+                <label for="product-visibility">Visibilidad:</label>
+                <div class="visibility-toggle" onclick="toggleVisibility()" style="justify-content: center;">
+                    <div class="eye-icon" id="eye"><i class="fa-solid fa-eye-slash"></i></div>
+                    <div class="toggle-switch" id="switch"></div>
+                </div>
+                <input type="text" style="display: none;" id="product-visibility" value="NO" name="VISIBLE">
+                <input type="text" style="display: none;" id="imagenform1" name="IMAGEN1" value="">
+                <input type="text" style="display: none;" id="imagenform2" name="IMAGEN2" value="">
+                <input type="text" style="display: none;" id="imagenform3" name="IMAGEN3" value="">
+            </div>
+
+            <br><br><br><br><h4 style="text-align: center;">Previsualización</h4><hr><br>
+
+            <div class="col s6">
+                <a href="#" style="display: flex; margin: auto; width: 98%; text-decoration: none;">
+                    <div class="content">
+                        <img id="image-preview" src="https://media.istockphoto.com/id/626567860/vector/sketch-of-interior-of-restaurant.jpg?s=612x612&w=0&k=20&c=_IJwZGFLNGJL7KkwF7tgvHKVVedhwu-AB02jdkU5ZgU=" alt="menú">
+                        <div class="text">
+                            <h6 id="titleprev" style="font-size: 22px; line-height: 110%;margin: 0;font-family: 'Roboto', sans-serif;font-weight: 600;color: #333;">¿?</h6>
+                            <p class="price" id="priceprev" style="font-size: 20px; font-weight: 600; color: #ff1900;">$0</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <br><br><br><br>
+
+            <div style="margin: 0 auto; text-align: center;"><button type="submit" class="btn btn-primary" id="submit-button">Crear Producto</button></div>
+
+        <input type="text" style="display: none;" id="ID_product"  value="" name="ID">
+        </form>
+
+
+    </div>
+
+
+<audio id="audio" src="https://dm0qx8t0i9gc9.cloudfront.net/previews/audio/BsTwCwBHBjzwub4i4/audioblocks-app-done-ding-bell-idea-success-bell-idea-success_rbMgkyPXKD8_NWM.mp3"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.js"></script>
+    
+    <script>
+document.querySelector(".preloader").style.display = "none";
+
+$('.slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                arrows: true,
+            });
+
+
+function generateRandomId() {
+    // Longitud deseada del ID
+    var idLength = 10;
+
+    // Caracteres posibles para el ID
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    var randomId = '';
+    for (var i = 0; i < idLength; i++) {
+        var randomIndex = Math.floor(Math.random() * characters.length);
+        randomId += characters.charAt(randomIndex);
+    }
+
+    return randomId;
+}
+
+var productId = generateRandomId();
+document.getElementById('ID_product').value = productId;
+
+
+
+var $form = $('form#contact-form');
+var url = 'https://script.google.com/macros/s/AKfycbyk-ZCXolIJdn9nU-r31K3U9GhsqWfUAprkLnvgjmgYS-cGAOhdVcp1uUwvI7ZdhPM2/exec';
+
+let forma = document.querySelector("form");
+forma.addEventListener("submit", (event) => {
+    event.preventDefault();
+    mandar();
+    abrir();
+})
+
+function mandar() {
+    // Agrega el parámetro 'action' con el valor 'create' a la URL
+    var createUrl = url + '?action=create';
+
+    var jqxhr = $.ajax({
+        url: createUrl,
+        method: "GET",
+        dataType: "json",
+        data: $form.serializeObject(),
+        success: function(data) {
+            console.log(data);
+        }
+    });
+};
+
+
+
+function abrir(){
+         
+          swal({
+             title: "Producto Creado",
+             type: "success",
+             showConfirmButton: false,
+             allowOutsideClick: false,      
+             timer: 20000
+                
+                })
+              audio(); 
+}
+
+
+function audio(){
+var sonido = document.getElementById("audio");
+        sonido.play(); redirect();
+};
+
+function redirect(){
+     setTimeout(function(){location.replace("../Prueba");},2000); 
+};
+
+        function fileChange(imageNumber) {
+    var fileInput = document.getElementById('input_img' + imageNumber);
+    var file = fileInput.files[0];
+
+
+            if (file) {
+                var img = new Image();
+                img.src = window.URL.createObjectURL(file);
+
+                img.onload = function () {
+                    var desiredAspectRatio = 320 / 213;
+                    var originalAspectRatio = img.width / img.height;
+
+                    if (originalAspectRatio !== desiredAspectRatio) {
+                        // Mostrar una alerta de SweetAlert
+                        Swal.fire({
+                            type: "question",
+                            title: "Redimensionar Imagen",
+                            text: "La imagen no tiene la relación de aspecto deseada (320:213). ¿Deseas redimensionarla automáticamente?",
+                            showCancelButton: true,
+                            showConfirmButton: true,
+                            confirmButtonText: "Sí",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (originalAspectRatio > desiredAspectRatio) {
+                            img.width = 640;
+                            img.height = 640 / originalAspectRatio;
+                        } else {
+                            img.height = 426;
+                            img.width = 426 * originalAspectRatio;
+                        }
+                    }
+                    processAndUploadImage(img, imageNumber);
+                });
+            } else {
+                        processAndUploadImage(img, imageNumber);
+                    }
+                };
+            }
+        }
+
+        function processAndUploadImage(img, imageNumber) {
+            $(".preloader").fadeIn(1000);
+                document.querySelector(".overlay").style.display = "block";
+                document.body.style.overflow = "hidden";
+
+
+            // Procesar y subir la imagen
+            var canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 426;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            var resizedImage = canvas.toDataURL('image/jpeg');
+            var form = new FormData();
+            form.append("image", dataURItoBlob(resizedImage));
+
+            var settings = {
+                "url": "https://api.imgbb.com/1/upload?key=ae04368bb81b6e944f3247d81ff33784",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+
+
+            $.ajax(settings).done(function (response) {
+                var jx = JSON.parse(response);
+                console.log(response);
+                var imageUrl = jx.data.url;
+                if (imageNumber === 1) {
+                    $('#image-preview').attr('src', imageUrl).show();
+                    ChangePrev();
+                }
+                $('#imagenform' + imageNumber).attr('value', imageUrl);
+                $('#drop-zone' + imageNumber).css('background-image', 'url(' + imageUrl + ')');
+                $('#drop-zone-icon' + imageNumber).attr('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sign-check-icon.png/800px-Sign-check-icon.png');
+                $(".preloader").fadeOut(1000);
+                document.querySelector(".overlay").style.display = "none";
+                document.body.style.overflow = "auto"; // Habilita el scroll
+            });
+
+        }
+        
+        function activateInput(imageNumber) {
+            document.getElementById('input_img' + imageNumber).click();
+        }
+
+
+
+
+        function dataURItoBlob(dataURI) {
+            var byteString = atob(dataURI.split(',')[1]);
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ab], { type: mimeString });
+        }
+
+        function ChangePrev() {
+            $("#titleprev").html($("#product-name").val());
+             var priceValue = $("#product-price").val().replace(/[^0-9.]/g, "");
+            $("#priceprev").html(new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD', maximumFractionDigits: 0}).format(priceValue));
+        }
+        
+        // Función para formatear el precio como moneda en tiempo real
+document.getElementById("product-price").addEventListener("input", function () {
+    // Eliminar cualquier caracter que no sea un número o un punto decimal
+    var sanitizedValue = this.value.replace(/[^0-9.]/g, "");
+    
+    // Formatear el valor como moneda
+    var formattedValue = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+    }).format(sanitizedValue);
+
+    // Establecer el valor formateado en el campo de entrada
+    this.value = formattedValue;
+});
+document.getElementById("product-price").addEventListener("focus", function () {
+    this.select();
+});
+
+
+function toggleVisibility() {
+    const eye = document.getElementById("eye");
+    const switchToggle = document.getElementById("switch");
+    const visibilityInput = document.getElementById("product-visibility");
+
+    if (visibilityInput.value === "SI") {
+        eye.classList.remove("active");
+        switchToggle.classList.remove("active");
+        visibilityInput.value = "NO";
+        eye.innerHTML = "";  
+        eye.innerHTML = "<i class='fa-solid fa-eye-slash'></i>";
+    } else {
+        eye.classList.add("active");
+        switchToggle.classList.add("active");
+        visibilityInput.value = "SI";
+        eye.innerHTML = "";  
+        eye.innerHTML = "<i class='fa-solid fa-eye'></i>";
+    }
+}
+
+(function() {
+  if (window.localStorage && !localStorage.getItem('firstLoad')) {
+    localStorage['firstLoad'] = true;
+    window.location.reload();
+  } else {
+    localStorage.removeItem('firstLoad');
+  }
+})();
+    </script>
+</body>
+</html>
